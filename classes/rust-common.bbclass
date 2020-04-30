@@ -6,7 +6,7 @@ FILES_${PN}-dbg += "${rustlibdir}/.debug"
 
 RUSTLIB = "-L ${STAGING_LIBDIR}/rust"
 RUST_DEBUG_REMAP = "--remap-path-prefix=${WORKDIR}=/usr/src/debug/${PN}/${EXTENDPE}${PV}-${PR}"
-RUSTFLAGS += "${RUSTLIB} ${RUST_DEBUG_REMAP}"
+RUSTFLAGS += "${RUSTLIB} ${RUST_DEBUG_REMAP} ${@oe.utils.parallel_make_argument(d, '-Ccodegen-units=%d', limit=64)}"
 RUSTLIB_DEP ?= "libstd-rs"
 RUST_TARGET_PATH = "${STAGING_LIBDIR_NATIVE}/rustlib"
 RUST_PANIC_STRATEGY ?= "unwind"
