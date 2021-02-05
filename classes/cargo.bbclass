@@ -8,11 +8,8 @@ inherit cargo_common
 # the binary we will use
 CARGO = "cargo"
 
-# We need cargo to compile for the target
-BASEDEPENDS_append = " cargo-native"
-
 # Ensure we get the right rust variant
-DEPENDS_append_class-target = " virtual/${TARGET_PREFIX}rust ${RUSTLIB_DEP}"
+DEPENDS_append_class-target = " virtual/${TARGET_PREFIX}rust ${RUSTLIB_DEP} cargo-native"
 DEPENDS_append_class-native = " rust-native"
 
 # Enable build separation
